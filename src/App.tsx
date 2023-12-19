@@ -1,5 +1,5 @@
 import { useState, useRef, FormEvent } from 'react';
-import { useParsedData } from './utils/parseJSON';
+import { parsedData } from './utils/parseJSON';
 import coffee from './data/coffee.json';
 import bg from './assets/img/bg-cafe.jpg';
 import CoffeeCard from './components/CoffeeCard';
@@ -15,9 +15,11 @@ interface coffeeDataProps {
 	available: boolean;
 }
 
+const defaultData = coffee;
+
 const App = () => {
 	const [coffeeData, setCoffeeData] = useState<coffeeDataProps[]>(
-		useParsedData(coffee)
+		parsedData(coffee)
 	);
 	const allProductsBtnRef = useRef<HTMLButtonElement>(null);
 	const availableBtnRef = useRef<HTMLButtonElement>(null);
@@ -28,7 +30,7 @@ const App = () => {
 		availableBtnRef.current?.style &&
 			(availableBtnRef.current.style.backgroundColor = 'transparent');
 
-		setCoffeeData(coffeeData);
+		setCoffeeData(parsedData(defaultData));
 	};
 
 	const handleAvailableClick = () => {
@@ -36,6 +38,11 @@ const App = () => {
 			(availableBtnRef.current.style.backgroundColor = '#6F757C');
 		allProductsBtnRef.current?.style &&
 			(allProductsBtnRef.current.style.backgroundColor = 'transparent');
+
+		const filterAllAvailable = coffeeData.filter(
+			data => data.available !== false
+		);
+		setCoffeeData(filterAllAvailable);
 	};
 
 	return (
