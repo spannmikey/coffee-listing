@@ -1,7 +1,10 @@
+import { useState } from 'react';
+import { useParsedData } from './utils/parseJSON';
 import coffee from './data/coffee.json';
 
 const App = () => {
-	console.log(JSON.parse(JSON.stringify(coffee)));
+	const [coffeeData, setCoffeeDate] = useState(useParsedData(coffee));
+
 	return (
 		<main className='min-h-screen flex items-center justify-center'>
 			<div className='card w-96 bg-base-100 shadow-xl'>
