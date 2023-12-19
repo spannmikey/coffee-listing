@@ -16,7 +16,9 @@ const CoffeeCard = ({ coffeeData }: { coffeeData: CoffeeDataProps[] }) => {
 	return (
 		<div className='grid lg:grid-cols-2 gap-8 relative'>
 			{coffeeData.map(data => (
-				<div className='card w-96'>
+				<div
+					className='card w-96'
+					key={data.id}>
 					<figure>
 						<img
 							className='w-full'
@@ -31,7 +33,7 @@ const CoffeeCard = ({ coffeeData }: { coffeeData: CoffeeDataProps[] }) => {
 								{data.price}
 							</div>
 						</div>
-						<div className='flex '>
+						<div className='flex'>
 							{data.rating && data.votes ? (
 								<>
 									<img
@@ -51,6 +53,9 @@ const CoffeeCard = ({ coffeeData }: { coffeeData: CoffeeDataProps[] }) => {
 									<span className='text-[#6F757C]'>No ratings</span>
 								</>
 							)}
+							<div className='ml-auto'>
+								{!data.available && <p className='text-[#ED735D]'>Sold out</p>}
+							</div>
 						</div>
 					</div>
 					{data.popular && (

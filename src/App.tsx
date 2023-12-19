@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, FormEvent } from 'react';
 import { useParsedData } from './utils/parseJSON';
 import coffee from './data/coffee.json';
 import bg from './assets/img/bg-cafe.jpg';
@@ -19,6 +19,24 @@ const App = () => {
 	const [coffeeData, setCoffeeData] = useState<coffeeDataProps[]>(
 		useParsedData(coffee)
 	);
+	const allProductsBtnRef = useRef<HTMLButtonElement>(null);
+	const availableBtnRef = useRef<HTMLButtonElement>(null);
+
+	const handleAllProductsClick = () => {
+		allProductsBtnRef.current?.style &&
+			(allProductsBtnRef.current.style.backgroundColor = '#6F757C');
+		availableBtnRef.current?.style &&
+			(availableBtnRef.current.style.backgroundColor = 'transparent');
+
+		setCoffeeData(coffeeData);
+	};
+
+	const handleAvailableClick = () => {
+		availableBtnRef.current?.style &&
+			(availableBtnRef.current.style.backgroundColor = '#6F757C');
+		allProductsBtnRef.current?.style &&
+			(allProductsBtnRef.current.style.backgroundColor = 'transparent');
+	};
 
 	return (
 		<div className='flex items-center justify-center '>
@@ -37,8 +55,18 @@ const App = () => {
 					</p>
 					<div className='flex gap-8 mt-6 mb-12'>
 						{/* add btn neutral class to whichever one is active */}
-						<button className='btn btn-neutral'>All Products</button>
-						<button className='btn btn-ghost'>Available</button>
+						<button
+							ref={allProductsBtnRef}
+							onClick={e => handleAllProductsClick(e)}
+							className='btn bg-[#6F757C] hover:bg-transparent border-none'>
+							All Products
+						</button>
+						<button
+							ref={availableBtnRef}
+							onClick={e => handleAvailableClick(e)}
+							className='btn btn-ghost'>
+							Available
+						</button>
 					</div>
 					<CoffeeCard coffeeData={coffeeData} />
 				</div>
