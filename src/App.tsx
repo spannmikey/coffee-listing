@@ -46,13 +46,13 @@ const App = () => {
 	};
 
 	return (
-		<div className='flex items-center justify-center '>
+		<div className='flex items-center justify-center'>
 			<img
 				className='w-full h-[300px] object-cover'
 				src={bg}
 				alt='cafe background image'
 			/>
-			<div className='bg-[#1B1D1F] w-11/12  mx-auto absolute top-40 rounded-md'>
+			<div className='bg-[#1B1D1F] w-11/12  mx-auto absolute top-40 rounded-md '>
 				<div className='flex flex-col items-center justify-center'>
 					<h1 className='text-[32px] font-bold mt-16'>Our Collection</h1>
 					<p className='text-center w-[48ch] text-[#6F757C] text-[16px] mt-2'>
