@@ -1,4 +1,4 @@
-import { useState, useRef, FormEvent } from 'react';
+import { useState, useRef } from 'react';
 import { parsedData } from './utils/parseJSON';
 import coffee from './data/coffee.json';
 import bg from './assets/img/bg-cafe.jpg';
@@ -64,13 +64,13 @@ const App = () => {
 						{/* add btn neutral class to whichever one is active */}
 						<button
 							ref={allProductsBtnRef}
-							onClick={e => handleAllProductsClick(e)}
+							onClick={handleAllProductsClick}
 							className='btn bg-[#6F757C] hover:bg-transparent border-none'>
 							All Products
 						</button>
 						<button
 							ref={availableBtnRef}
-							onClick={e => handleAvailableClick(e)}
+							onClick={handleAvailableClick}
 							className='btn btn-ghost'>
 							Available
 						</button>
